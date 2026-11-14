@@ -35,4 +35,11 @@ return [
         ],
     ],
 
+    // YouCook: IA con Groq
+    // La clave y modelo salen de .env. Código lee con config('services.groq.key')
+    // y config('services.groq.model'), no con env()
+    'groq' => [
+        'key' => env('GROQ_API_KEY'),
+        'model' => env('GROQ_MODEL', 'openai/gpt-oss-20b'),
+    ],
 ];
