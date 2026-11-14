@@ -1,0 +1,18 @@
+# Código de referencia de las guías (solo en el computador de Sebastián)
+referencia/
+
+# Dependencias del mockup
+mockup/*/node_modules/
+mockup/*/dist/
+
+# Laravel: web/ trae su propio .gitignore (vendor, node_modules, .env)
+.DS_Store
+
+# Documentos
+docs/guias
+docs/evidencia
+docs/plan
+
+scripts/
+
+Youcook.zip

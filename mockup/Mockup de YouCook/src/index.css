@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@600;700;800;900&family=Inter:wght@400;500;600&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Nunito', ui-rounded, system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --color-tomato-50: #fff1ec;
+  --color-tomato-100: #ffdfd4;
+  --color-tomato-200: #ffbea8;
+  --color-tomato-500: #e8503a;
+  --color-tomato-600: #d23f2a;
+  --color-tomato-700: #ad311f;
+  --color-cream: #fff8ee;
+  --color-cream-200: #f8ecd9;
+  --color-cream-300: #efdcc0;
+  --color-basil-50: #eef6ee;
+  --color-basil-100: #d7ebd8;
+  --color-basil-500: #3f8f4e;
+  --color-basil-600: #2f7540;
+  --color-charcoal: #2e2b28;
+  --color-charcoal-soft: #6b645d;
+  --shadow-soft: 0 1px 2px rgb(46 43 40 / 0.04), 0 8px 24px -8px rgb(46 43 40 / 0.12);
+  --shadow-lift: 0 2px 4px rgb(46 43 40 / 0.05), 0 18px 40px -14px rgb(173 49 31 / 0.28);
+}
+
+@layer base {
+  body {
+    background: var(--color-cream);
+    color: var(--color-charcoal);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-tomato-200);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes bounce-dot { 0%, 80%, 100% { transform: translateY(0); opacity: .4 } 40% { transform: translateY(-5px); opacity: 1 } }
+@keyframes shimmer { 0% { background-position: -400px 0 } 100% { background-position: 400px 0 } }
+@keyframes pop-in { 0% { transform: scale(.6) rotate(-12deg); opacity: 0 } 70% { transform: scale(1.08) rotate(3deg) } 100% { transform: scale(1) rotate(0); opacity: 1 } }
+@keyframes rise { from { transform: translateY(8px); opacity: 0 } to { transform: none; opacity: 1 } }
+
+@utility dot { animation: bounce-dot 1.2s infinite ease-in-out; }
+@utility skeleton {
+  background: linear-gradient(90deg, #e5efe5 0%, #f6fbf6 50%, #e5efe5 100%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+@utility pop { animation: pop-in .6s cubic-bezier(.2,.9,.3,1.3) both; }
+@utility rise { animation: rise .35s ease-out both; }

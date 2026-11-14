@@ -1,0 +1,10 @@
+{
+  "description": "Encuentra recetas sencillas y económicas, adapta ingredientes con ayuda de IA y guarda tus platos favoritos mientras sigues tu progreso en la cocina.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
