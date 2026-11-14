@@ -1,14 +1,15 @@
 <?php
 
+use App\Http\Controllers\RecipeController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/recetas');
 
-// Rutas provisionales: existen desde el primer día para que los enlaces y los
-// formularios de todos funcionen. Miguel reemplaza cada una por su controlador.
 Route::middleware('auth')->group(function () {
-    Route::view('/recetas', 'pendiente')->name('recetas.index');
-    Route::view('/recetas/{recipe}', 'pendiente')->name('recetas.show');
+    Route::get('/recetas', [RecipeController::class, 'index'])->name('recetas.index');
+    Route::get('/recetas/{recipe}', [RecipeController::class, 'show'])->name('recetas.show');
+
+    // Provisionales: se reemplazan mañana por sus controladores.
     Route::post('/recetas/{recipe}/guardar', fn () => back())->name('recetas.guardar');
     Route::post('/recetas/{recipe}/cocinada', fn () => back())->name('recetas.cocinada');
 
