@@ -1,33 +1,26 @@
-{{-- Versión provisional: sin diseño, solo para poder entrar. Emma la reemplaza. --}}
-<!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Iniciar sesión · {{ config('app.name') }}</title>
+@extends('layouts.guest')
 
-        @fonts
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="grid min-h-screen place-items-center p-6">
-        <main class="w-full max-w-md rounded-3xl bg-white p-8 shadow-soft">
-            <h1 class="text-3xl font-black">Iniciar sesión</h1>
+@section('titulo', 'Iniciar sesión')
 
-            <form method="POST" action="{{ route('login') }}" class="mt-6 space-y-4">
-                @csrf
+@section('contenido')
+    <h1 class="text-[34px] leading-tight font-black">¡Hola de nuevo!</h1>
+    <p class="mt-2 text-charcoal-soft">Ingresa para ver tus recetas guardadas.</p>
 
-                <input type="email" name="email" value="{{ old('email') }}" placeholder="Correo" required class="w-full rounded-xl border p-3">
-                @error('email') <p class="text-sm text-tomato-600">{{ $message }}</p> @enderror
+    <form method="POST" action="{{ route('login') }}" class="mt-8 space-y-5">
+        @csrf
 
-                <input type="password" name="password" placeholder="Contraseña" required class="w-full rounded-xl border p-3">
+        <x-auth-field label="Correo" type="email" name="email" icon="mail" placeholder="camila@uni.cl" autofocus autocomplete="username" />
+        <x-auth-field label="Contraseña" type="password" name="password" icon="lock" placeholder="••••••••" autocomplete="current-password" />
 
-                <label class="flex items-center gap-2 text-sm"><input type="checkbox" name="remember"> Recordarme</label>
+        <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" name="remember" class="size-4 accent-tomato-500"> Recordarme
+        </label>
 
-                <button class="w-full rounded-xl bg-tomato-500 p-3 font-bold text-white">Entrar</button>
-            </form>
+        <x-primary-button>Iniciar sesión</x-primary-button>
+    </form>
 
-            <p class="mt-6 text-sm">¿No tienes cuenta? <a href="{{ route('registro') }}" class="font-bold underline">Regístrate</a></p>
-        </main>
-    </body>
-</html>
-
+    <p class="mt-8 text-center text-[15px] text-charcoal-soft">
+        ¿Primera vez en YouCook?
+        <a href="{{ route('registro') }}" class="font-bold text-tomato-600 hover:underline">Regístrate gratis</a>
+    </p>
+@endsection
