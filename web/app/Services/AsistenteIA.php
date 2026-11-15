@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Exceptions\IaNoDisponible;
+use App\Models\Ingredient;
+use App\Models\Recipe;
 use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
