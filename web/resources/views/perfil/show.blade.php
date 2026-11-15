@@ -98,7 +98,7 @@
                     <span class="font-display text-xl font-black">{{ $porcentaje }}%</span>
                 </div>
                 <div class="mt-3 flex justify-between text-xs text-white/60">
-                    <span>Inicio</span><span>5 · Aprendiz</span><span>10 · Chef de pensión</span><span>20 · Maestra</span>
+                    <span>Inicio</span><span>5 · Aprendiz</span><span>10 · Chef de pensión</span><span>20 · Leyenda</span>
                 </div>
             </section>
             {{-- --- Stickers --- --}}
