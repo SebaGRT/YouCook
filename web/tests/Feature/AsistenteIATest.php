@@ -3,6 +3,8 @@
 namespace Tests\Feature;
 
 use App\Exceptions\IaNoDisponible;
+use App\Models\Ingredient;
+use App\Models\Recipe;
 use App\Services\AsistenteIA;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Client\Request;

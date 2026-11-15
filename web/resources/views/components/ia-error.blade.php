@@ -5,6 +5,6 @@
         <p class="font-semibold text-charcoal">El asistente no está disponible</p>
         <p class="text-sm text-charcoal-soft">Intenta de nuevo en un momento.</p>
     </div>
-    <button type="button" {{ $attributes->class('flex items-center gap-1.5 rounded-full border-2 border-tomato-200 px-3.5 py-1.5 text-sm font-bold text-tomato-600 hover:bg-tomato-50') }}><x-icon name="refresh" size"15" /> Reintentar
+    <button type="button" {{ $attributes->class('flex items-center gap-1.5 rounded-full border-2 border-tomato-200 px-3.5 py-1.5 text-sm font-bold text-tomato-600 hover:bg-tomato-50') }}><x-icon name="refresh" size="15" /> Reintentar
     </button>
 </div>
