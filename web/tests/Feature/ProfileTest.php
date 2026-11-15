@@ -27,7 +27,7 @@ class ProfileTest extends TestCase
             ->assertSee('1 de 4 recetas cocinadas')
             ->assertSee('25%')
             ->assertSee($cocinada->sticker_name)
-            ->assertSee('Cocinera en entrenamiento');
+            ->assertSee('Principiante');
     }
 
     public function test_se_pueden_actualizar_el_nombre_y_el_correo(): void

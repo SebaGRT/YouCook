@@ -26,10 +26,10 @@ class ProfileController extends Controller
             'saved' => $user->savedRecipes()->count(),
             'total' => $recipes->count(),
             'level' => match (true) {
-                $cooked >= 20 => 'Maestra de cocina',
+                $cooked >= 20 => 'Leyenda de la cocina',
                 $cooked >= 10 => 'Chef de pensión',
                 $cooked >= 5 => 'Aprendiz',
-                default => 'Cocinera en entrenamiento',
+                default => 'Principiante',
             },
         ]);
     }
