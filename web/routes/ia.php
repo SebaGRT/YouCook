@@ -1,15 +1,19 @@
 <?php
 
+use App\Http\Controllers\AssistantController;
+use App\Http\Controllers\IngredientAlternativeController;
 use Illuminate\Support\Facades\Route;
 
-// Rutas provisionales del asistente: Sebastián las reemplaza el sábado.
 Route::middleware('auth')->group(function () {
-    Route::view('/asistente', 'pendiente')->name('asistente.show');
-    Route::delete('/asistente', fn () => back())->name('asistente.reset');
+    Route::get('/asistente', [AssistantController::class, 'show'])->name('asistente.show');
+    Route::delete('/asistente', [AssistantController::class, 'reset'])->name('asistente.reset');
 
-    Route::post('/asistente', fn () => response()->json(['error' => 'Todavía no hay IA.'], 503))
-        ->name('asistente.send');
+    // Las dos rutas que llaman a la IA: máximo 20 consultas por minuto por persona.
+    Route::middleware('throttle:20,1')->group(function () {
+        Route::post('/asistente', [AssistantController::class, 'send'])->name('asistente.send');
 
-    Route::post('/recetas/{recipe}/ingredientes/{ingredient}/alternativas', fn () => response()->json(['error' => 'Todavía no hay IA.'], 503))
-        ->name('recetas.alternativas');
+        Route::post('/recetas/{recipe}/ingredientes/{ingredient}/alternativas', IngredientAlternativeController::class)
+            ->scopeBindings()
+            ->name('recetas.alternativas');
+    });
 });
