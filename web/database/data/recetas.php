@@ -121,7 +121,7 @@ return [
             'Rellena con manjar y enrolla.',
         ],
     ],
-        // --- Recetas del mockup (5 a 8) ---
+    // --- Recetas del mockup (5 a 8) ---
     [
         'slug' => 'lentejas',
         'title' => 'Lentejas guisadas',
