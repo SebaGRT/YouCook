@@ -74,4 +74,46 @@ class AsistenteIATest extends TestCase
             Http::assertNothingSent();
         }
     }
+
+    // --- Día 2: reemplazos y conversación ---
+    public function test_alternativas_devuelve_una_por_linea_y_sin_vinetas(): void
+    {
+        $recipe = Recipe::factory()->create(['title' => 'Charquicán']);
+        $zapallo = Ingredient::factory()->for($recipe)->create(['name' => 'Zapallo', 'quantity' => '300 g']);
+        Http::fake(['api.groq.com/*' => Http::response($this->respuesta(
+            "- Sin Zapallo → zanahoria rallada (2 unidades)\n\n2. Sin Zapallo → 1 papa más"
+        ))]);
+
+        $alternativas = app(AsistenteIA::class)->alternativas($recipe, $zapallo);
+
+        $this->assertSame([
+            'Sin Zapallo → zanahoria rallada (2 unidades)',
+            'Sin Zapallo → 1 papa más',
+        ], $alternativas);
+        Http::assertSent(fn (Request $request) => str_contains($request['messages'][1]['content'], 'Zapallo (300 g)')
+            && str_contains($request['messages'][1]['content'], 'Charquicán'));
+    }
+
+    public function test_conversar_envia_las_reglas_la_receta_y_el_historial(): void
+    {
+        $recipe = Recipe::factory()->create(['title' => 'Charquicán']);
+        Http::fake(['api.groq.com/*' => Http::response($this->respuesta('Unos 15 minutos.'))]);
+
+        $texto = app(AsistenteIA::class)->conversar(
+            [['role' => 'user', 'content' => '¿Cuánto se demora?']],
+            $recipe,
+            'Camila',
+        );
+
+        $this->assertSame('Unos 15 minutos.', $texto);
+        Http::assertSent(function (Request $request) {
+            [$sistema, $pregunta] = $request['messages'];
+
+            return $sistema['role'] === 'system'
+                && str_contains($sistema['content'], 'YouCook')
+                && str_contains($sistema['content'], 'Camila')
+                && str_contains($sistema['content'], 'Charquicán')
+                && $pregunta['content'] === '¿Cuánto se demora?';
+        });
+    }
 }
