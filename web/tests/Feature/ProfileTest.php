@@ -10,7 +10,6 @@ use Tests\TestCase;
 class ProfileTest extends TestCase
 {
     use RefreshDatabase;
-    
 
     public function test_el_perfil_muestra_el_progreso_del_reto(): void
     {
