@@ -14,10 +14,8 @@
 <br />
 <div align="center">
   <a href="https://github.com/SebaGRT/YouCook">
-    <img src="docs/readme/logo.png" alt="Logo de YouCook" width="80" height="80">
+    <img src="docs/readme/logo.png" alt="YouCook" width="266" height="72">
   </a>
-
-  <h3 align="center">YouCook</h3>
 
   <p align="center">
     Recetas simples para cocinar con lo que hay en el refri, con alternativas para lo que falta y un asistente de cocina con IA.
